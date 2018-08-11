@@ -10,6 +10,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script>
+         function addTotal() {
+        //計算總價格的函數
+        var fTotal = 0;
+        //對於選中了的複選項進行遍歷
+        $("#inputGroup").each(function() {
+            //獲取每一個的數量
+            var iNum = parseInt($(this).parent().find("option").val());
+            //獲取每一個的單價
+            var fPrice = parseFloat($(this).parent().find("span[price]").attr("price"));
+            fTotal += iNum * fPrice;
+        });
+        $("#totalPrice").html("合計 NT$ " + fTotal + "元");
+    }
+
+    </script>
     <style>
         .sidenav {
             /* height: 100vh;
@@ -154,14 +170,13 @@
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
-                                    <span>xxxxxxxxx</span>
+                                    <span price="100">100</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroup">數量</label>
                                     </div>
                                     <select class="custom-select" id="inputGroup">
-                                        <option selected>1</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -172,8 +187,8 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <a href="#" class="btn btn-primary">儲存</a>
-                                    <a href="#" class="btn btn-danger">刪除</a>
+                                    <input type="submit" class="btn btn-primary" value="儲存">
+                                    <input type="reset" class="btn btn-danger" value="清除">
                                 </div>
                             </div>
                         </div>
@@ -186,7 +201,7 @@
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
-                                    <span>xxxxxxxxx</span>
+                                    <span>200</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -204,8 +219,8 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <a href="#" class="btn btn-primary">儲存</a>
-                                    <a href="#" class="btn btn-danger">刪除</a>
+                                    <input type="submit" class="btn btn-primary" value="儲存">
+                                    <input type="reset" class="btn btn-danger" value="清除">
                                 </div>
                             </div>
                         </div>
@@ -218,7 +233,7 @@
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
-                                    <span>xxxxxxxxx</span>
+                                    <span>300</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -236,8 +251,8 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <a href="#" class="btn btn-primary">儲存</a>
-                                    <a href="#" class="btn btn-danger">刪除</a>
+                                    <input type="submit" class="btn btn-primary" value="儲存">
+                                    <input type="reset" class="btn btn-danger" value="清除">
                                 </div>
                             </div>
                         </div>
@@ -253,30 +268,30 @@
                                     <div class="input-group-text" id="btnGroup">請輸入優惠代碼</div>
                                 </div>
                                 <input type="text" class="pb-2">
-                                <a href="#" class="btn btn-primary">使用優惠</a>
+                                <input type="submit" class="btn-lg btn-primary" value="使用優惠">
                             </div>
                         </div>
                         <div class="col-lg-5">
                             <table class="table table-hover">
                                 <tr>
                                     <th scope="row">小計:</th>
-                                    <td>NT$200,000,000</td>
+                                    <td><span>0</span></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">折扣:</th>
-                                    <td>-NT$5000</td>
+                                    <td><span>-50</span></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">運費:</th>
-                                    <td>NT$50</td>
+                                    <td><span>1000</span></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">總和(TOTAL):</th>
-                                    <td>NT$200,005,050</td>
+                                    <th scope="row" id="totalPrice">總和(TOTAL):</th>
+                                    <td><span>0</span></td>
                                 </tr>
                             </table>
                             <div>
-                                <a href="結帳2.html" class="btn-lg btn-primary">確認結帳</a>
+                                <input type="submit" class="btn-lg btn-primary" value="確認結帳">
                             </div>
                         </div>
                     </div>

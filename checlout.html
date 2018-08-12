@@ -11,21 +11,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
     <script>
-         function addTotal() {
-        //計算總價格的函數
-        var fTotal = 0;
-        //對於選中了的複選項進行遍歷
-        $("#inputGroup").each(function() {
-            //獲取每一個的數量
-            var iNum = parseInt($(this).parent().find("option").val());
-            //獲取每一個的單價
-            var fPrice = parseFloat($(this).parent().find("span[price]").attr("price"));
-            fTotal += iNum * fPrice;
-        });
-        $("#totalPrice").html("合計 NT$ " + fTotal + "元");
-    }
-
-    </script>
+            $(document).ready(function(){
+                $("input[type=submit]").click(function(){
+                    total=0;
+                    alert("數量為:"+$("#inputGroup").val()+"金額為:" + $("span[price]").attr("price"));
+                    var num = $("#inputGroup").val();
+                    var iprice=$("span[price]").attr("price");
+                    total = num * iprice;
+                    $("#totalPrice").html(total);
+        
+                });
+            });
+            </script>
     <style>
         .sidenav {
             /* height: 100vh;
@@ -201,7 +198,7 @@
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
-                                    <span>200</span>
+                                    <span price="200">200</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -233,7 +230,7 @@
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
-                                    <span>300</span>
+                                    <span price="300">300</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -287,7 +284,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" id="totalPrice">總和(TOTAL):</th>
-                                    <td><span>0</span></td>
+                                    <td><span id="totalPrice">0</span></td>
                                 </tr>
                             </table>
                             <div>

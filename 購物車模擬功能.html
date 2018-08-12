@@ -1,0 +1,103 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">  
+  
+    <head>  
+        <title>JQuery获取文本框的值</title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=zh-tw" />  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>  
+          
+        <script type="text/javascript"> 
+         
+        $(document).ready(function(){ 
+            $(".b_no").text($("ul>li").length-1);
+            TotalPrice();
+
+            $(document).on('click', '.butto', function (event) {
+                $(this).parent().remove();
+                $(".b_no").text($("ul>li").length);
+                TotalPrice();
+            });
+            $(document).on('change', '.num', function (event) {
+                var pri = $(this).parent().find(".pri").val();
+                var num = $(this).parent().find(".num").val();
+                var result3 = pri * num;
+                $(this).parent().find(".b_total").text(result3);
+                TotalPrice();
+            }); 
+            
+            function TotalPrice() {
+             var allprice = 0; //合計
+                 $(".b_total").each(function(){
+                    allprice=allprice+parseInt($(this).text())
+                 });
+                 $(".b_all").text(allprice); 
+            }  
+            
+            $("#button_").click(function(){  
+                var result1=$(this).parent().find("#input_text1").val();
+                var pri = $(this).parent().find(".pri").val();			            
+                $(".list").append("<li>" + result1
+                 +"  <input class='pri' type='text' value='"+ pri
+                 +"'  disabled='true'/>  " 
+                 + " <select class= 'num'><option value='1'>01</option><option value='2'>02</option>"
+                 + "<option value='3'>03</option></select >" 
+                 + " <span class='b_total'>"+ pri
+                 + "</span><button class='butto'>取消</button> </li >");
+                $(".b_no").text($(".list>li").length-1);
+                TotalPrice(); 
+            });  
+            
+        });  
+        </script> 
+        <style>
+            li{
+                list-style: none;
+            }
+            span{
+                margin:  0px 18px;
+            }
+            select{
+                margin:  0px 10px;
+                background-color: #ffff00;
+            } 
+            input{
+                margin:  0px 20px;
+                width: 30px;
+            }
+            .b_total{
+                width: 100px;
+                background-color: #b4e664;
+            }  
+
+                 
+        </style>
+    </head>  
+  
+    <body>         
+        <div id="test1">  
+            <input id="input_text1" type="text"  value="聊齋誌異" style="width: 100px;" /> 
+             單價 :
+            <select class='pri'>
+                <option value='100'>100</option>
+                <option value='200'>200</option>
+                <option value='300'>300</option>
+            </select>
+        <button id="button_">加購</button>   
+        </div> 
+        <ul class="list">
+            <li><span class="kk" >書名</span><SPan>單價</SPan><SPan>數量</SPan><SPan>小計</SPan></li>
+            <!-- <li>聊齋誌異  單價:
+                    <input class='pri' type='text' value='100' style='width: 30px;' disabled='true'/> 
+                數量 :
+                <select class='num' >
+                    <option value='1'>01</option>
+                    <option value='2'>02</option>
+                    <option value='3'>03</option>
+                    <option value='4'>04</option>
+                </select>
+                小計=<span class="b_total">100</span>
+                <button class="butto">移除</button> </li>                 -->
+        </ul> 
+        <h2>你總共買了<span class="b_no">0</span>種書,合計花費<span class="b_all">0</span></h2>       
+    </body>  
+  
+</html>  

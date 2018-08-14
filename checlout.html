@@ -11,18 +11,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
     <script>
-            $(document).ready(function(){
-                $("input[type=submit]").click(function(){
-                    total=0;
-                    alert("數量為:"+$("#inputGroup").val()+"金額為:" + $("span[price]").attr("price"));
-                    var num = $("#inputGroup").val();
-                    var iprice=$("span[price]").attr("price");
-                    total = num * iprice;
-                    $("#totalPrice").html(total);
-        
-                });
+        $(document).ready(function () {
+            // $("input[type=submit]").click(function(){
+            //     total=0;
+            //     alert("數量為:"+$("#inputGroup").val()+"金額為:" + $("span[price]").attr("price"));
+            //     var num = $("#inputGroup").val();
+            //     var iprice=$("span[price]").attr("price");
+            //     total = num * iprice;
+            //     $("#totalPrice").html(total);
+
+            // });
+            Subtotal1();
+            Subtotal2();
+            Subtotal3();
+            total();
+
+            function total() {
+                var total = 0;
+                var subtotal1 = Number($("#Subtotal1").text());
+                var subtotal2 = Number($("#Subtotal2").text());
+                var subtotal3 = Number($("#Subtotal3").text());
+                total = subtotal1 + subtotal2 + subtotal3;
+                $("#subtotal").html(total);
+            }
+
+            function Subtotal1() {
+                var subtotal = 0;
+                var num = $("#card1").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card1").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal1").html(subtotal);
+            }
+
+            function Subtotal2() {
+                var subtotal = 0;
+                var num = $("#card2").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card2").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal2").html(subtotal);
+            }
+
+            function Subtotal3() {
+                var subtotal = 0;
+                var num = $("#card3").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card3").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal3").html(subtotal);
+            }
+            $(".btn-primary").click(function () {
+                Subtotal1();
+                Subtotal2();
+                total();
             });
-            </script>
+
+            $(".btn-danger").click(function () {
+                $(this).parent().find("#inputGroup").val("0");
+                Subtotal1();
+                Subtotal2();
+                Subtotal3();
+                total();
+            });
+        });
+    </script>
     <style>
         .sidenav {
             /* height: 100vh;
@@ -160,7 +210,7 @@
                     </div>
                     <div class="card-columns">
                         <!-- <div class="col-4 pt-2"> -->
-                        <div class="card">
+                        <div class="card" id="card1">
                             <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
@@ -184,14 +234,17 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <input type="submit" class="btn btn-primary" value="儲存">
-                                    <input type="reset" class="btn btn-danger" value="清除">
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
                                 </div>
+                                <p>小計:
+                                    <span id="Subtotal1">0</span>
+                                </p>
                             </div>
                         </div>
                         <!-- </div> -->
                         <!-- <div class="col-4 pt-2"> -->
-                        <div class="card">
+                        <div class="card" id="card2">
                             <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
@@ -216,14 +269,17 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <input type="submit" class="btn btn-primary" value="儲存">
-                                    <input type="reset" class="btn btn-danger" value="清除">
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
                                 </div>
+                                <p>小計:
+                                    <span id="Subtotal2">0</span>
+                                </p>
                             </div>
                         </div>
                         <!-- </div> -->
                         <!-- <div class="col-4 pt-2"> -->
-                        <div class="card">
+                        <div class="card" id="card3">
                             <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
@@ -248,9 +304,12 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <input type="submit" class="btn btn-primary" value="儲存">
-                                    <input type="reset" class="btn btn-danger" value="清除">
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
                                 </div>
+                                <p>小計:
+                                    <span id="Subtotal3">0</span>
+                                </p>
                             </div>
                         </div>
                         <!-- </div> -->
@@ -272,19 +331,27 @@
                             <table class="table table-hover">
                                 <tr>
                                     <th scope="row">小計:</th>
-                                    <td><span>0</span></td>
+                                    <td>
+                                        <span id="subtotal">0</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">折扣:</th>
-                                    <td><span>-50</span></td>
+                                    <td>
+                                        <span>-50</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">運費:</th>
-                                    <td><span>1000</span></td>
+                                    <td>
+                                        <span>1000</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row" id="totalPrice">總和(TOTAL):</th>
-                                    <td><span id="totalPrice">0</span></td>
+                                    <td>
+                                        <span id="totalPrice">0</span>
+                                    </td>
                                 </tr>
                             </table>
                             <div>

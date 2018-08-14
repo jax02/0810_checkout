@@ -28,6 +28,8 @@
             Subtotal5();
             Subtotal6();
             total();
+            alltotal()
+
 
             function total() {
                 var total = 0;
@@ -88,6 +90,27 @@
                 subtotal = num * iprice;
                 $("#Subtotal6").html(subtotal);
             }
+
+            function Freight() {
+                var subtotal = 0;
+                var num = $("#card7").find(".card-body").find("#inputGroup").val();
+                subtotal = num
+                $("#freight").html(subtotal);
+                $("#Freight").html(subtotal);
+                alltotal();
+
+            }
+
+            function alltotal() {
+                var alltotal = 0;
+                var sub = Number($("#subtotal").text());
+                var freight = Number($("#Freight").text());
+                alltotal = sub + freight;
+                $("#totalPrice").html(alltotal);
+
+
+
+            }
             $(".btn-primary").click(function () {
                 Subtotal1();
                 Subtotal2();
@@ -95,7 +118,9 @@
                 Subtotal4();
                 Subtotal5();
                 Subtotal6();
+                Freight();
                 total();
+                alltotal();
             });
 
             $(".btn-danger").click(function () {
@@ -107,6 +132,7 @@
                 Subtotal5();
                 Subtotal6();
                 total();
+                alltotal();
             });
         });
     </script>
@@ -450,16 +476,44 @@
                 </div>
                 <div class="container-fluid mt-2 mb-2">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <h4>促銷優惠</h4>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text" id="btnGroup">請輸入優惠代碼</div>
+                        <div class="col-lg-4">
+                            <div class="card" id="card7">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">細節選項</h5>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroup">運送方式</label>
+                                        </div>
+                                        <select class="custom-select" id="inputGroup">
+                                            <option value="10">走路</option>
+                                            <option value="100">跑步</option>
+                                            <option value="1000">騎腳踏車</option>
+                                            <option value="10000">騎摩托車</option>
+                                            <option value="20">空運</option>
+                                            <option value="200">海運</option>
+                                            <option value="2000">24HR限時</option>
+                                            <option value="20000">??</option>
+                                            <option value="999999999">????</option>
+                                        </select>
+                                        <button id="button_" class="btn-primary">確認</button>
+                                    </div>
+                                    <p>運費:
+                                        <span id="freight">0</span>
+                                    </p>
+                                    <h4>促銷優惠</h4>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" id="btnGroup">請輸入優惠代碼</div>
+                                        </div>
+                                        <input type="text" class="pb-2">
+                                        <input type="submit" class="btn-lg btn-primary" value="使用優惠">
+                                    </div>
                                 </div>
-                                <input type="text" class="pb-2">
-                                <input type="submit" class="btn-lg btn-primary" value="使用優惠">
                             </div>
                         </div>
+
+                        <div class="col-lg-3"></div>
                         <div class="col-lg-5">
                             <table class="table table-hover">
                                 <tr>
@@ -477,11 +531,11 @@
                                 <tr>
                                     <th scope="row">運費:</th>
                                     <td>
-                                        <span>1000</span>
+                                        <span id="Freight">0</span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" id="totalPrice">總和(TOTAL):</th>
+                                    <th scope="row">總和(TOTAL):</th>
                                     <td>
                                         <span id="totalPrice">0</span>
                                     </td>

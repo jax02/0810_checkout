@@ -24,6 +24,9 @@
             Subtotal1();
             Subtotal2();
             Subtotal3();
+            Subtotal4();
+            Subtotal5();
+            Subtotal6();
             total();
 
             function total() {
@@ -31,7 +34,10 @@
                 var subtotal1 = Number($("#Subtotal1").text());
                 var subtotal2 = Number($("#Subtotal2").text());
                 var subtotal3 = Number($("#Subtotal3").text());
-                total = subtotal1 + subtotal2 + subtotal3;
+                var subtotal4 = Number($("#Subtotal4").text());
+                var subtotal5 = Number($("#Subtotal5").text());
+                var subtotal6 = Number($("#Subtotal6").text());
+                total = subtotal1 + subtotal2 + subtotal3 + subtotal4 + subtotal5 + subtotal6;
                 $("#subtotal").html(total);
             }
 
@@ -58,9 +64,37 @@
                 subtotal = num * iprice;
                 $("#Subtotal3").html(subtotal);
             }
+
+            function Subtotal4() {
+                var subtotal = 0;
+                var num = $("#card4").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card4").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal4").html(subtotal);
+            }
+
+            function Subtotal5() {
+                var subtotal = 0;
+                var num = $("#card5").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card5").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal5").html(subtotal);
+            }
+
+            function Subtotal6() {
+                var subtotal = 0;
+                var num = $("#card6").find(".card-body").find("#inputGroup").val();
+                var iprice = $("#card6").find(".card-body").find("span[price]").attr("price");
+                subtotal = num * iprice;
+                $("#Subtotal6").html(subtotal);
+            }
             $(".btn-primary").click(function () {
                 Subtotal1();
                 Subtotal2();
+                Subtotal3();
+                Subtotal4();
+                Subtotal5();
+                Subtotal6();
                 total();
             });
 
@@ -69,6 +103,9 @@
                 Subtotal1();
                 Subtotal2();
                 Subtotal3();
+                Subtotal4();
+                Subtotal5();
+                Subtotal6();
                 total();
             });
         });
@@ -210,8 +247,8 @@
                     </div>
                     <div class="card-columns">
                         <!-- <div class="col-4 pt-2"> -->
-                        <div class="card" id="card1">
-                            <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
+                        <div class="card border-success" id="card1">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500"> -->
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
@@ -242,10 +279,8 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-4 pt-2"> -->
-                        <div class="card" id="card2">
-                            <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
+                        <div class="card border-success" id="card2">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap"> -->
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
@@ -258,7 +293,6 @@
                                         <label class="input-group-text" for="inputGroup">數量</label>
                                     </div>
                                     <select class="custom-select" id="inputGroup">
-                                        <option selected>1</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -277,16 +311,80 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-4 pt-2"> -->
-                        <div class="card" id="card3">
-                            <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap">
+                        <div class="card border-success" id="card3">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap"> -->
                             <div class="card-body">
                                 <h5 class="card-title">商品名稱</h5>
                                 <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
                                 </p>
                                 <p>價格:
                                     <span price="300">300</span>
+                                </p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroup">數量</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroup">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
+                                </div>
+                                <p>小計:
+                                    <span id="Subtotal3">0</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card border-success" id="card4">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">商品名稱</h5>
+                                <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
+                                </p>
+                                <p>價格:
+                                    <span price="400">400</span>
+                                </p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroup">數量</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroup">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
+                                </div>
+                                <p>小計:
+                                    <span id="Subtotal4">0</span>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- <div class="col-4 pt-2"> -->
+                        <div class="card border-success" id="card5">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">商品名稱</h5>
+                                <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
+                                </p>
+                                <p>價格:
+                                    <span price="500">500</span>
                                 </p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -308,7 +406,42 @@
                                     <button id="reset" class="btn-danger">清除</button>
                                 </div>
                                 <p>小計:
-                                    <span id="Subtotal3">0</span>
+                                    <span id="Subtotal5">0</span>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- <div class="col-4 pt-2"> -->
+                        <div class="card border-success" id="card6">
+                            <!-- <img class="card-img-top" src="http://source.unsplash.com/random/500x500" alt="Card image cap"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">商品名稱</h5>
+                                <p class="card-text">Some quick example text to build on the and make up the bulk of the card's content.
+                                </p>
+                                <p>價格:
+                                    <span price="600">600</span>
+                                </p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroup">數量</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroup">
+                                        <option selected>1</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                    <button id="button_" class="btn-primary">儲存</button>
+                                    <button id="reset" class="btn-danger">清除</button>
+                                </div>
+                                <p>小計:
+                                    <span id="Subtotal6">0</span>
                                 </p>
                             </div>
                         </div>
